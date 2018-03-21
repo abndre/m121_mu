@@ -1,6 +1,13 @@
 https://github.com/neetocode/mongodb-university/blob/master/m121/chapter02/lab02.js
 https://github.com/Kmwai/m121/tree/master/chap_3
 
+#CONNECT
+
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+mongo "mongodb://cluster0-shard-00-00-jxeqq.mongodb.net:27017,cluster0-shard-00-01-jxeqq.mongodb.net:27017,cluster0-shard-00-02-jxeqq.mongodb.net:27017/aggregations?replicaSet=Cluster0-shard-0" --authenticationDatabase admin --ssl -u m121 -p aggregations --norc
+
+
 #LAB1
 
 var pipeline = [
