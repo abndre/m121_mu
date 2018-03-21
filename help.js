@@ -173,3 +173,32 @@ db.movies.aggregate([
         }
     }
 ])
+
+#LAB $UNWIND
+
+var y = db.movies.aggregate([
+    {
+        $match: {
+            'languages': 'English',
+            'imdb.rating': { $gte: 0 }
+        }
+    },
+    {
+        $unwind: '$cast'
+    },
+    {
+        $group: {
+            _id: '$cast',
+            numFilms: { $sum: 1 },
+            average: { $avg: '$imdb.rating' }
+        }
+    },
+    {
+        $sort: {
+            "numFilms": -1
+        }
+    },
+    {
+        $limit: 1
+    },
+])
